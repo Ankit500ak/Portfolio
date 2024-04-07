@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=poppins:wght@300;400;500;600;700;800;900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'poppins',sans-serif;
+        }
+        :root{
+            --bg-color:#1f242d;
+            --second-bg-color:#323946;
+            --text-color:#ffffff;
+            --main-color:#0ef;
+        }
+        html{   
+            font-size: 62.5%;
+            overflow-x: hidden;
+        }
+        body{
+            background: var(--bg-color);
+            color:var(--text-color);
+        }
+        section
+        {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem;
+        }
+        .header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .header.sticky{
+            border-bottom: .1rem solid rgba(0, 0, 0, 0,0.2);
+        }
+        .logo{
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: default;
+        }
+        .navbar a{
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-left: 4rem;
+            transition: .3s;
+        }
+        .navbar a:hover,
+        .navbar a.active
+        {
+            color: var(--main-color);
+            text-shadow: 10px 10px 10px rgba(0,0,0,0.73);
+            font-size: 2rem;
+        }
+        #menu-icon{
+            color: var(--text-color);
+            font-size: 3.6rem;
+            display: none;
+        }
+        .home{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-img img{
+            width:35vw;
+         
+        }
+        .home-content h3{
+            font-weight: 700;
+            font-size: 3.2rem;
+        }
+        .home-content h3:nth-of-type(2){
+            margin-bottom: 2rem;
+        }
+
+        span{
+            color: var(--main-color);
+        }
+        .home-content h1{
+            font-size: 5.6rem;
+            font-weight: 700;
+        }
+        .avtar{
+            background-color: #ffffff00;
+            max-height: 400px;
+            max-width: 500px;
+            filter: drop-shadow(5px 5px 5px #00c3ff9b);
+            transition: .6s;
+           }
+        .avtar:hover{
+            max-height: 420px;
+            max-width: 520px;
+            filter: drop-shadow(10px 10px 10px #00c3ff9b);
+           }
+        .bx bx-menue{
+            font-size: 3.6rem;
+            color:white;
+            display: none;
+        }
+    .home-content p{
+        font-size: 1.6rem;
+    }
+    .social-media a{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 4rem;
+        height: 4rem;background: transparent;
+        border: .2rem solid var(--main-color);
+        border-radius: 50%;
+        font-size: 2rem;
+        color: var(--main-color);
+        margin: 3rem 1.5rem 3rem 0;
+        transition: .6s ease-in-out;
+    }
+    .social-media a:hover{
+        background: var(--main-color);
+        color: var(--second-bg-color);
+        box-shadow: 0 0 1rem var(--main-color);
+    }
+    .btn{
+        display: inline-block;
+        padding: 1rem 2.8rem;
+        margin: 1.2rem;
+        background: var(--main-color);
+        border-radius: 4rem;
+        box-shadow: 0 0 1rem var(--main-color);
+        font-size: 1.6rem;
+        color: var(--second-bg-color);
+        letter-spacing: .1rem;
+        font-weight: 600;
+        transition: .5s ease;
+        position: relative;
+    }
+    .btn:hover{
+        box-shadow: none;
+    }
+    .about-img img{
+        max-height: 500px;
+        max-width: 400px;
+        filter: drop-shadow(5px 5px 5px #00c3ff9b);
+        transition: .6s;
+    }
+    .about-img img:hover{
+        max-height: 510px;
+        max-width: 410px;
+        filter: drop-shadow(10px 10px 10px #00c3ff9b);
+    }
+    .about{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: var(--second-bg-color);
+    }
+    .heading{
+        text-align: center;
+        font-size: 4.5rem;
+    }
+    .about-content h1{
+        font-size: 3.6rem;
+        font-weight: 600;
+    }
+    .about-content h2{
+        align-items: left;
+        line-height: 1.9;
+    }
+    .about-content h3{
+        font-size: 2.6rem;
+    }
+    .about-content p{
+        font-size: 1.7rem;
+        margin: 2rem 0 3px;
+        letter-spacing: .1rem;
+    }
+    .services h2{
+        margin-bottom: 5rem;
+
+    }
+    .services-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+    }
+
+    .services-container .services-box{
+        flex: 1 1 30rem;
+        background: var(--second-bg-color);
+        padding: 3rem 2rem 4rem ;
+        border-radius: 2rem;
+        text-align: center;
+        border: 0.2rem solid var(--bg-color);
+        transition: .5s ease;
+    }
+    .services-container .services-box:hover{
+        border-color: var(--main-color);
+        transform: scale(1.02);
+    }
+.services-box i{
+    font-size: 7rem;
+    color: var(--main-color);
+}
+.services-box h3{
+    font-size: 2.6rem;
+
+}
+.services-box p{
+    font-size: 1.2rem;
+
+}
+.portfolio{
+    background: var(--second-bg-color);
+}
+.portfolio h2{
+    margin-bottom: 4rem;
+}
+.portfolio-container{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    gap:2.5rem;
+}
+.portfolio-container .portfolio-box{
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 10px 10px 10px var(--bg-color);
+    width: 35rem;
+    height: 20rem;
+    overflow: hidden;
+    display: flex;
+}
+.portfolio-container .portfolio-box:hover{
+    border:rgb(255, 255, 255) 2px double;
+}
+.portfolio-box img{
+    width: 100%;
+    transition: .5s ease;
+}
+
+.portfolio-box:hover img{
+
+    transform:scale(1.3);
+}
+.portfolio-box .portfolio-layer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.129),rgba(0, 0, 0, 0),var(--main-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+}
+
+.portfolio-box:hover .portfolio-layer{
+    transform: translateY(0);
+}
+.portfolio-layer h4{
+    font-size: 3rem;
+}
+
+.portfolio-layer p{
+    font-size: 1.2rem;
+    margin:3rem 0 1 rem;
+}
+.portfolio-layer a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: var(--text-color);
+    border-radius: 50%;
+
+}
+.portfolio-layer a i{
+    font-size: 2rem;
+    color: var(--second-bg-color);
+    
+}
+.portfolio-box{
+    width: 100%;
+    height: 100%;
+}
+
+
+.contact h2{
+    margin-bottom: 3rem;
+
+}
+.contact form{
+    min-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+
+.contact form .input-box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .input-box input,
+.contact form textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border-radius: .8rem;
+    margin: .7rem 0;
+}
+
+.contact form .input-box input{
+    width: 49%;
+}
+
+.contact form textarea{
+    resize: none;
+
+}
+
+.contact form .btn{
+    margin-top: 2.5rem;
+    
+    cursor: pointer;
+}
+
+.footer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 6%;
+    background: var(--second-bg-color);
+}
+
+.footer-text p{
+    font-size: 1.6rem;
+}
+.footer-iconTop{
+    border: #0ef solid 2px;
+    border-radius: 50%;
+}
+.footer-iconTop a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .2rem;
+  color: var(--main-color);
+    border-radius: 50%;
+    font-size: 20px;
+    transition:.5s ease;
+}
+.footer-iconTop a:hover{
+    box-shadow: 0 0 1rem var(--main-color);
+}
+.footer-iconTop a i{
+    font-size: 2.4rem;
+    color: var(--second-bg-color);
+}
+
+
+@media(max-width:1200px){
+    html{
+        font-size: 55%;
+    }
+}
+@media(max-width:991px){
+.header{
+    padding: 2rem 3%;
+}
+.section{
+    padding: 10rem 3% 2rem;
+}
+.services{
+    padding-bottom: 7rem;
+}
+.portfolio{
+    padding-bottom: 7rem;
+}
+.contact{
+    min-height: auto;
+    min-width: auto;
+}
+.footer{
+    padding: 2rem 3%;
+}
+}
+@media(max-width:768px){
+    #menu-icon{
+        display: block;
+
+    }
+    .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0, 0, 0, 0,0.2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0,0.2);
+        display: none;
+    }
+
+    .navbar.active{
+        display:block;
+        color:red;
+    }
+    .navbar a{
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+    .home{
+        flex-direction: column;
+    }
+    .home-content h3{
+        font-size: 2.6rem;
+    }
+    .home-content h1{
+        font-size: 5rem;
+    }
+    .home-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+}
+.wrapper span{
+            color: #fff;
+            font-size: 3.5vw;
+            font-weight: 500;
+            letter-spacing: 1px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <!--Header design-->
+    <header class="header">
+        <a href="#" class="logo">Portfolio</a>
+        <i class="bx bx-menue" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <section class="home" id="home">
+        <div class="home-content" style="position: absolute;left: 20%;">
+            <h3>Hello, It's Me</h3>
+            <h1 style="color: aqua;">Ankit Pal</h1>
+            <div class="wrapper" id="particle-js">
+                <span>
+                    and i am a <span style="color: aqua;text-transform:capitalize;" class="multiText">Coder</span>
+                </span>
+            </div>
+            <p>Learn from past , live in present and work for Tomorrow . <br> Work in scilence and let my sucess make Noise.</p>
+            <div class="social-media">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com/ank500ak?igshid=OGQ5ZDc2ODk2ZA=="><i class='bx bxl-instagram' ></i></a>
+                <a href="https://www.linkedin.com/feed/?doFeedRefresh=true&nis=true&="><i class='bx bxl-linkedin-square' ></i></a>
+            </div>
+            <a href="https://resume.io/r/5g0BhnLnO" class="btn">Download CV</a>
+        </div>
+        <img src="" alt="" srcset="">
+        <div class="home-img">
+            <img class="avtar" style="position: absolute;left: 50%; top: 25%;padding: 0;" src="https://static.vecteezy.com/system/resources/previews/022/483/551/large_2x/classy-3d-fashion-boy-with-tuxedo-ideal-for-formal-or-black-tie-events-transparent-background-free-png.png" alt="file:///C:/Users/abc/Downloads/vecteezy_classy-3d-fashion-boy-with-tuxedo-ideal-for-formal-or-black_22483551_65.png">
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="https://static.vecteezy.com/system/resources/previews/022/483/729/non_2x/valiant-3d-boy-in-dynamic-superhero-costume-on-white-background-transparent-background-free-png.png" class="avtar2">
+        </div>
+        <div class="about-content">
+            <h2 class="heading">
+                About <span>Me</span>
+            </h2>
+            <h3>Frontend <span>Devloper</span> </h3>
+            <p>With a passion for creativity and a love for all things tech, I thrive on bringing ideas to life in the digital realm. As a versatile and innovative professional, I blend design expertise with technical know-how to craft immersive experiences that captivate and engage audiences. <br>
+                From sleek user interfaces to seamless interactions, I strive to push the boundaries of what's possible, delivering impactful solutions that leave a lasting impression.</p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+    </div>
+    </section>
+<section class="services" id="services">
+    <h2 class="heading">MY <span>Speciality</span></h2>
+
+    <div class="services-container">
+        <div class="services-box">
+            <i class='bx bx-data'></i>
+            <h3>SQL</h3>
+            <p>Passionate about transforming data into actionable insights, I am a SQL developer with a knack for optimizing database performance and crafting efficient queries. With a keen eye for detail and a commitment to data accuracy, I am ready to leverage my skills to propel my projects to new heights. </p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+        <div class="services-box">
+            <i class='bx bxl-html5'></i>
+            <h3>Html</h3>
+            <p>Transforming digital visions into interactive realities, I am an HTML developer with a passion for crafting seamless and visually compelling web experiences. Let my code speak the language of innovation and user-centric design as we elevate online presence together. </p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+        <div class="services-box">
+            <i class='bx bxl-css3' ></i>
+            <h3>CSS</h3>
+            <p>Transforming pixels into seamless experiences; I don't just code, I craft visual stories with CSS. Ready to bring my digital vision to life, one line at a time</p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+
+        <div class="services-box">
+            <i class='bx bxl-nodejs' ></i>
+            <h3>Javascript</h3>
+            <p>Unleashing the power of my code with JavaScript—where innovation meets seamless development. Elevate my skills, transform my projects, and emerge as a dynamic developer in the world of endless possibilities. </p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+        <div class="services-box">
+            <i class='bx bxl-bootstrap' ></i>
+            <h3>Bootstrap</h3>
+            <p>Empowering web experiences with sleek design and seamless functionality - as a Bootstrap developer, I code the future of user-friendly interfaces! </p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+        <div class="services-box">
+            <i class='bx bxl-figma' ></i>
+            <h3>Figma</h3>
+            <p>Transforming pixels into seamless experiences, one line of code at a time. Ready to craft intuitive user interfaces that captivate and connect</p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+    </div>
+
+</section>
+<section class="portfolio" id="portfolio">
+    <h2 class="heading">Latest <span> Project</span></h2>
+    <div class="portfolio-container">
+        <div class="portfolio-box">
+            <img src="https://venturebeat.com/wp-content/uploads/2017/01/computer-vision.jpg?fit=2048%2C1281&strip=all" alt="">
+            <div class="portfolio-layer">
+                <h4>Recipe project</h4>
+                <p>In this project i have created an app where one can get access to the food recipes by searching in search bar. we can also search with the first letter.</p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather/MAIN.HTML"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+
+        
+        <div class="portfolio-box">
+            <img src="https://cdn.wallpapersafari.com/47/20/N9lpCt.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Educational project</h4>
+                <p>This is a project on which i am currently workiing on this project contain the marketing for a buisness like coaching center. <span style="color: red;"><br> this project is under progress so the photos are messed up</span></p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather/mineswpper.html"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+            
+       
+
+
+
+        <div class="portfolio-box">
+            <img src="https://ohsonline.com/-/media/OHS/OHS/Images/2022/05/computer-vision.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Quiz App</h4>
+                <p>Javascript Project</h4>
+                    <p>In this project  i have created a platform where one can access database question in an interactive manner</p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather/quiz.html"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+
+        <div class="portfolio-box">
+            <img src="https://img.freepik.com/premium-photo/transmission-sound-sound-wave-illustration_739548-2329.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Anime Website</h4>
+                <p>Web project</h4>
+                    <p>
+                         With this project, I have designed a front view of a web app where a person can not only watch anime but also gain some knowledge of anime for starters.</p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather/anime~nation.html"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+
+        <div class="portfolio-box">
+            <img src="https://wallpapercave.com/wp/wp9153613.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Shopping website</h4>
+                <p>Welcome to our shopping website project, where the world of retail unfolds at my fingertips. With a seamless blend of convenience, variety, and exceptional user experience, we bring the joy of shopping right to my screen. </p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather/main1.html"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+
+        <div class="portfolio-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPZKLQ_OdXuAA0s2LO6WgVYITgwIvkHooluA&usqp=CAU" alt="">
+            <div class="portfolio-layer">
+                <h4>web compiler</h4>
+                <p>In this project i have created a compiler in wich we can run html css and js code simltaniously and the code works live in the output window next to it.</p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather/new.html"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+        <div class="portfolio-box">
+            <img src="https://cdn.wallpapersafari.com/47/20/N9lpCt.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Weather App</h4>
+                <p>In this project we can get the current weather report a place .given that the spelling of the place is correct.</span></p>
+           <a href="https://ankitproject16-dec-2023.on.drv.tw/weather.html"><i class='bx bx-link-external'></i></a>
+           
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h2 class="heading">
+        Contact <span>Me</span>
+    </h2>
+    <form action="#">
+        <div class="input-box">
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email Address">
+
+        </div>
+        <div class="input-box">
+            <input type="text" placeholder="Mobile Number">
+            <input type="text" placeholder="Email Subject">
+            
+        </div>
+        <textarea name="" id="" cols="30" rows="10" placeholder="my Message"></textarea>
+        <input type="submit" value="Send Message" class="btn">
+    </form>
+</section>
+
+<footer class="footer">
+    <div class="footer-text">
+        <p>Copyright &copy; 2023 by Arise Coders | All Rights Reserved . </p>
+    </div>
+    <div class="footer-iconTop">
+        <a href="#home">^</a> 
+    </div>
+</footer>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+<script>
+
+    let menuIcon = document.querySelector('#menu-icon');
+    let navbar = document.querySelector('.navbar');
+
+    menuIcon.onclick = () => {
+        menuIcon.classList.toogle('bx-x');
+        navbar.classList.toogle('active');
+    };
+
+
+
+
+    let sections = document.querySelectorAll('section');
+    let navLinks = document.querySelectorAll('header nav a');
+
+    window.onscroll = () => {
+        sections.forEach(sec => {
+            let top = window.scrollY;
+            let offset = sec.offsetTop - 150;
+            let height = sec.offsetHeight;
+            let id = sec.getAttribute('id');
+
+            if(top >= offset && top < offset + height){
+                navLinks.forEach(links => {
+                    links.classList.remove('active');
+                    document.querySelector('header nav a[href*='+ id +']').classList.add('active');
+                });
+            };
+        });
+   
+
+
+    let header = document.querySelector('header');
+    header.classList.toggle('sticky',window.scrollY >100);
+
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
+
+};
+
+
+ScrollReveal({
+    reset:true,
+    distance:'120px',
+    duration: 2000,
+    delay: 100
+});
+
+ScrollReveal().reveal('.home-content, .heading',{origin: 'top'});
+ScrollReveal().reveal('home-img, .services-container,.portfolio-box,.contact form'),{ogigin:'bottom'};
+
+ScrollReveal().reveal('.home-content,h1,.about-img',{origin:'left'});
+
+
+var  typingEffect = new Typed(".multiText",{
+        strings:["coder","Programer","designer","engineer"],
+        loop :true,
+        typeSpeed:100,
+        backSpeed:80,
+        startDelay:1000,
+        backDelay:1500
+    }
+    ) 
+</script>
+
+</body>
+</html> 
